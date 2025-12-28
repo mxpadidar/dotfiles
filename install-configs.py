@@ -4,7 +4,7 @@ import shutil
 from pathlib import Path
 
 logging.basicConfig(level=logging.INFO, format="%(name)s - %(levelname)s - %(message)s")
-logger = logging.getLogger("config_collector")
+logger = logging.getLogger("config_installer")
 
 HOME = Path.home()
 REPO = Path.cwd()
@@ -27,22 +27,23 @@ CONFIG_MAP = {
 }
 
 
-def collect(src: Path, dst: Path):
+def install(src: Path, dst: Path):
     if dst.exists():
         shutil.rmtree(dst) if dst.is_dir() else dst.unlink()
+    dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(src, dst) if src.is_dir() else shutil.copy2(src, dst)
-    logger.info(f"Collected {src} -> {dst}")
+    logger.info(f"Installed {src.name} -> {dst}")
 
 
 def main():
     for repo_name, home_path in CONFIG_MAP.items():
-        src = HOME / home_path
-        dst = REPO / repo_name
+        src = REPO / repo_name
+        dst = HOME / home_path
 
         if src.exists():
-            collect(src, dst)
+            install(src, dst)
         else:
-            logger.warning(f"Missing in HOME: {src}")
+            logger.warning(f"Missing in repo: {repo_name}")
 
 
 if __name__ == "__main__":
