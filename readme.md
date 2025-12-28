@@ -16,10 +16,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$H
 
 ```sh
 sudo pacman -S --needed --noconfirm \
-  openssh tree proxychains-ng htop lazygit \
-  wl-clipboard pavucontrol brightnessctl wiremix \
-  blueman bluez bluez-utils \
-  nautilus eog \
+  openssh tree proxychains-ng htop lazygit pcmanfm eog \
+  wl-clipboard pavucontrol brightnessctl wiremix blueman bluez bluez-utils \
   hyprlock hyprpaper waybar swaync adw-gtk-theme \
   go rustup nodejs npm python-pip postgresql-libs base-devel \
   podman docker docker-compose \
