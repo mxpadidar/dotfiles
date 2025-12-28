@@ -1,0 +1,107 @@
+@define-color dark    #222222;
+@define-color dark-accent #2A2A2A;
+@define-color light   #F8EDFF;
+@define-color primary #525CEB;
+@define-color urgent  #B43F3F;
+
+* {
+  background: transparent;
+  border: none;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Hasklug Nerd Font Propo";
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#window#waybar {
+  background-color: transparent;
+}
+
+tooltip {
+  background-color: @primary;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: @light;
+  padding: 2px 5px;
+  font-weight: normal;
+}
+
+#battery,
+#custom-notification,
+#network,
+#bluetooth,
+#pulseaudio,
+#clock,
+#custom-power {
+  transition: all 0.2s ease-in-out;
+  background-color: @dark;
+  color: @light;
+  border-radius: 10px;
+  border: solid 1px @dark;
+  padding: 0 10px;
+  margin: 0 5px;
+  min-width: 20px;
+  border: none;
+}
+
+/* Hover states */
+#battery:hover,
+#custom-notification:hover,
+#network:hover,
+#bluetooth:hover,
+#clock:hover,
+#pulseaudio:hover {
+  background-color: @dark-accent;
+  color: @light;
+}
+
+#custom-power {
+  color: @urgent;
+}
+
+#custom-power:hover {
+  background-color: @urgent;
+  color: @dark;
+}
+
+
+#workspaces {
+  padding: 5px 4px;
+  /* border: solid 2px @dark; */
+  border-radius: 10px;
+}
+
+#workspaces button {
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+  color: @light;
+  min-width: 40px;
+}
+
+#workspaces button.active {
+  background-color: @primary;
+  color: @dark;
+  min-width: 45px;
+  margin: 0 5px;
+}
+
+#workspaces button:hover,
+#workspaces button.urgent {
+  min-width: 50px;
+  background-size: 400% 400%;
+}
+
+#workspaces button:hover {
+  background-color: @primary;
+  color: @light;
+}
+
+/* Urgent */
+#workspaces button.urgent {
+  background-color: @urgent;
+  color: @dark;
+}

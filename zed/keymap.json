@@ -1,0 +1,39 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-g": "git_panel::ToggleFocus",
+      "alt-s": ["pane::DeploySearch", { "replace_enabled": true }],
+
+      "alt-o": "file_finder::Toggle",
+      "shift shift": "workspace::ToggleBottomDock",
+      "alt-k": "editor::MoveLineUp", // move line up
+      "alt-j": "editor::MoveLineDown", // move line down
+      "alt-;": "editor::AcceptPartialEditPrediction", // accept completion word by word
+      "alt-n": "tab_switcher::Toggle",
+      "alt-l": "workspace::ActivatePaneRight",
+      "alt-h": "workspace::ActivatePaneLeft",
+      "alt-f": "project_panel::ToggleFocus",
+      "alt-[": "workspace::ToggleLeftDock",
+      "alt-]": "workspace::ToggleRightDock",
+      "alt-i": "terminal_panel::ToggleFocus",
+      "alt-p": "command_palette::Toggle",
+      "alt-u": "pane::CloseActiveItem",
+      // "alt-c": "vim::ToggleComments",
+      // "alt-x": "agent::ToggleFocus",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "backspace": "pane::CloseActiveItem",
+      "]": "workspace::ToggleRightDock",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-enter": "pane::SplitRight",
+    },
+  },
+]

@@ -1,0 +1,52 @@
+:root {
+  --dark: #222222;
+  --dark-t: #22222240;
+  --dark-accent: #2a2a2a;
+  --light: #f8edff;
+  --light-t: #f8edff40;
+  --primary: #525ceb;
+  --urgent: #b43f3f;
+}
+
+/* Global reset */
+* {
+  color: var(--light);
+  font-size: 14px;
+  font-family: "Hasklug Nerd Font";
+  transition: 200ms;
+}
+
+/* Avoid annoying background */
+.blank-window {
+  background: transparent;
+}
+
+.control-center {
+  background: var(--dark);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 12px;
+}
+
+.notification {
+  background-color: transparent;
+}
+
+.control-center .notification {
+  background-color: var(--dark-accent);
+}
+
+.notification-group {
+  background-color: var(--dark-t);
+  border-radius: 30px;
+  border: 1px solid var(--dark-accent);
+}
+
+/* Scrollbar */
+scrollbar,
+scrollbar slider {
+  opacity: 0;
+  min-width: 0;
+  min-height: 0;
+  background: transparent;
+}

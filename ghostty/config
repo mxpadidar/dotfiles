@@ -1,0 +1,10 @@
+font-family = "Hasklug Nerd Font"
+font-size = 12.0
+
+background = #171717
+background-opacity = 0.9
+
+foreground = "#EDEDED"
+
+window-padding-x = 5
+window-padding-y = 0

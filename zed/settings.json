@@ -1,0 +1,68 @@
+{
+  "proxy": "http://localhost:2081",
+  "vim_mode": true,
+  "buffer_font_size": 15,
+  "ui_font_size": 15,
+  "buffer_font_family": "Hasklug Nerd Font",
+  "ui_font_family": "Hasklug Nerd Font",
+  "tab_size": 2,
+  "soft_wrap": "editor_width",
+  "show_whitespaces": "selection",
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark",
+  },
+  "format_on_save": "on",
+  "gutter": {
+    "breakpoints": true,
+  },
+  "agent": {
+    "default_profile": "write",
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5",
+    },
+  },
+  "features": {
+    "edit_prediction_provider": "copilot",
+  },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "analysis": {
+          "diagnosticMode": "openFilesOnly",
+          "typeCheckingMode": "basic",
+        },
+      },
+    },
+    "ty": {
+      "settings": {
+        "inlayHints": {
+          "variableTypes": true,
+          "callArgumentNames": true,
+        },
+        "experimental": {
+          "rename": true,
+          "autoImport": true,
+        },
+      },
+    },
+  },
+  "languages": {
+    "Python": {
+      "indent_guides": {
+        "line_width": 1,
+      },
+      "language_servers": ["basedpyright", "ruff", "codebook"],
+      "format_on_save": "on",
+      "tab_size": 4,
+      "formatter": [
+        { "code_action": "source.fixAll.ruff" },
+        { "code_action": "source.organizeImports.ruff" },
+        { "language_server": { "name": "ruff" } },
+      ],
+    },
+  },
+}

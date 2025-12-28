@@ -1,0 +1,64 @@
+@define-color dark    #222222;
+@define-color dark-trans #222222CC;
+@define-color dark-accent #2A2A2A;
+@define-color light   #F8EDFF;
+@define-color primary #525CEB;
+@define-color urgent  #B43F3F;
+
+* {
+  font-family: "Hasklug Nerd Font", monospace;
+  font-size: 15px;
+  color: @light;
+}
+
+/* Window (The entire Wofi application box) */
+#window {
+  background: @dark-trans;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid @dark-accent;
+}
+
+#outer-box {
+  padding: 20px;
+  color: @light;
+}
+
+#input {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  background-color: @light;
+  color: @dark;
+  font-weight: bolder;
+}
+
+#img {
+  margin-right: 6px;
+}
+
+#entry {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+
+#entry:selected {
+  border-radius: 10px;
+  background-color: @dark;
+  color: @light;
+  border: 1px solid @primary;
+}
+
+/* Text inside the entry */
+#text {
+  margin: 2px;
+}
+
+/* Ensure selected text is still readable */
+#text:selected {
+  color: @primary;
+  font-weight: bolder;
+}
