@@ -5,7 +5,7 @@ return {
 		require("mason-tool-installer").setup({
 			ensure_installed = {
 				"ruff",
-				-- "stylua", -- stylua needs rust
+				-- "stylua", -- stylua needs rust, its better to install it manually
 				"rustfmt",
 				"codespell",
 				"prettier",

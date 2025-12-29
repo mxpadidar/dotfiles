@@ -26,7 +26,7 @@
     },
   },
   "features": {
-    "edit_prediction_provider": "copilot",
+    "edit_prediction_provider": "zed",
   },
   "lsp": {
     "basedpyright": {
@@ -56,7 +56,6 @@
         "line_width": 1,
       },
       "language_servers": ["basedpyright", "ruff", "codebook"],
-      "format_on_save": "on",
       "tab_size": 4,
       "formatter": [
         { "code_action": "source.fixAll.ruff" },
