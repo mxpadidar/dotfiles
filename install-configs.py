@@ -20,10 +20,10 @@ CONFIG_MAP = {
     "ghostty": ".config/ghostty",
     "i3": ".config/i3",
     "pcmanfm": ".config/pcmanfm",
-    "zshrc": ".zshrc",
-    "zprofile": ".zprofile",
-    "vimrc": ".vimrc",
-    "gitconfig": ".gitconfig",
+    ".zshrc": ".zshrc",
+    ".zprofile": ".zprofile",
+    ".vimrc": ".vimrc",
+    ".gitconfig": ".gitconfig",
 }
 
 

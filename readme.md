@@ -2,9 +2,14 @@
 
 ## install packages
 
-```sh
-sudo pacman -S --needed --noconfirm \
-  git zsh firefox neovim ghostty hyprland wofi curl p7zip
+```bash
+sudo pacman -S --needed --noconfirm ttf-dejavu git zsh firefox neovim ghostty hyprland wofi curl p7zip
+```
+
+## clone the repo
+
+```bash
+git clone https://github.com/mxpadidar/dotfiles.git
 ```
 
 ## setup ohmyzsh
@@ -16,13 +21,19 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$H
 
 ```sh
 sudo pacman -S --needed --noconfirm \
-  openssh tree proxychains-ng htop lazygit pcmanfm eog \
+  openssh tree proxychains-ng htop lazygit pcmanfm eog vulkan-radeon \
   wl-clipboard pavucontrol brightnessctl wiremix blueman bluez bluez-utils \
   hyprlock hyprpaper waybar swaync adw-gtk-theme \
   go rustup nodejs npm python-pip postgresql-libs base-devel \
-  podman docker docker-compose \
-  otf-hasklig-nerd ttf-dejavu ttf-liberation noto-fonts \
+  podman docker docker-compose otf-hasklig-nerd   \
   xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland
+```
+
+# aur packages:
+
+```sh
+git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
+yay -S --needed --noconfirm hypridle nwg-look wlogout zed
 ```
 
 ## install uv
@@ -35,45 +46,9 @@ echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
 echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
 ```
 
-## download and install nekoray
-
-```sh
-# install required dependencies
-sudo pacman -S --needed --noconfirm \
-
-# download nekoray zip release
-curl -L \
-  https://github.com/MatsuriDayo/nekoray/releases/download/3.26/nekoray-3.26-2023-12-09-linux64.zip \
-  -o /tmp/nekoray.zip
-
-# extract to target directory
-mkdir -p ~/.local/opt/nekoray
-7z x /tmp/nekoray.zip -o~/.local/opt/nekoray
-
-# ensure executable permission
-chmod +x ~/.local/opt/nekoray/nekoray
-
-# create .desktop launcher
-mkdir -p ~/.local/share/applications
-cat <<EOF > ~/.local/share/applications/nekoray.desktop
-[Desktop Entry]
-Name=Nekoray
-Exec=%h/.local/opt/nekoray/nekoray
-Icon=%h/.local/opt/nekoray/nekoray.png
-Type=Application
-Categories=Network;
-StartupWMClass=Nekoray
-EOF
-```
-
 ## github configuration
 
 ```bash
-# configure git global settings
-git config --global user.email 'mxpadidar@gmail.com'
-git config --global user.name 'mxpadidar'
-git config --global core.editor "nvim"
-
 # generate ssh key and copy to clipboard
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -q
 wl-copy < ~/.ssh/id_ed25519.pub
