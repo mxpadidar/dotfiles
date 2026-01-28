@@ -56,6 +56,13 @@ wl-copy < ~/.ssh/id_ed25519.pub
 
 [github ssh key settings page](https://github.com/settings/keys)
 
+## install vimplug
+
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
 ## extra tools may be needed
 
 ```sh

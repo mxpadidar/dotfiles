@@ -26,7 +26,7 @@
     },
   },
   "features": {
-    "edit_prediction_provider": "zed",
+    "edit_prediction_provider": "copilot",
   },
   "lsp": {
     "basedpyright": {
@@ -39,6 +39,7 @@
     },
     "ty": {
       "settings": {
+        "diagnosticMode": "workspace",
         "inlayHints": {
           "variableTypes": true,
           "callArgumentNames": true,
@@ -55,7 +56,7 @@
       "indent_guides": {
         "line_width": 1,
       },
-      "language_servers": ["basedpyright", "ruff", "codebook"],
+      "language_servers": ["ty", "ruff", "codebook"],
       "tab_size": 4,
       "formatter": [
         { "code_action": "source.fixAll.ruff" },
