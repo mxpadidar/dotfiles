@@ -10,7 +10,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("configs")
-require("settings")
 require("keymaps")
 
 -- load lazy.nvim plugin manager
@@ -21,3 +20,6 @@ require("lazy").setup({
 	change_detection = { enabled = true, notify = false, notify_on_warn = false },
 	ui = { border = "rounded" },
 })
+
+-- set colorscheme after loading plugins to ensure it is available
+vim.cmd([[colorscheme ayu]])

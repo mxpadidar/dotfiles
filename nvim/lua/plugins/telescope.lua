@@ -32,11 +32,13 @@ return {
 			}))
 		end, { desc = "[f]ind [f]iles (dropdown)" })
 
-		vim.keymap.set("n", "fb", function()
+		vim.keymap.set("n", "<a-b>", function()
 			builtin.buffers(themes.get_dropdown({
 				previewer = false,
 			}))
 		end, { desc = "[f]ind [b]buffers" })
+
+		vim.keymap.set("n", "<a-g>", builtin.live_grep, { desc = "[f]ind by [g]rep" })
 
 		vim.keymap.set("n", "fib", function()
 			builtin.current_buffer_fuzzy_find(themes.get_dropdown({
@@ -44,7 +46,6 @@ return {
 			}))
 		end, { desc = "[f]ind [i]n current [b]buffer" })
 
-		vim.keymap.set("n", "fg", builtin.live_grep, { desc = "[f]ind by [g]rep" })
 		vim.keymap.set("n", "fh", builtin.help_tags, { desc = "[f]ind [h]elp" })
 		vim.keymap.set("n", "fk", builtin.keymaps, { desc = "[f]ind [k]eymaps" })
 		vim.keymap.set("n", "fs", builtin.builtin, { desc = "[f]ind [s]elect telescope" })
