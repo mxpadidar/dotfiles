@@ -32,7 +32,7 @@ vim.keymap.set({ "n", "v" }, "<leader><leader>", ":CopilotChat<cr>")
 -- reload neovim config
 vim.keymap.set("n", "<leader>so", "<cmd>source %<CR>")
 
--- restart lsp servers (its usefull when lsp does not reconize file tree updates)
+-- restart lsp servers (its useful when lsp does not recognize file tree updates)
 vim.keymap.set("n", "<leader>lsp", function()
 	vim.cmd("LspRestart")
 end, { desc = "[l]sp [r]estart" }) -- lr

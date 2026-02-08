@@ -2,22 +2,13 @@
 set -euo pipefail
 
 # install required dependencies
-sudo pacman -S --needed --noconfirm \
-  curl p7zip \
+sudo pacman -S --needed --noconfirm curl p7zip \
   qt5-base qt5-declarative qt5-svg qt5-tools qt5-wayland \
   xdg-desktop-portal xdg-desktop-portal-gtk qt5-x11extras
 
-# download nekoray zip release
-curl -L \
-  https://github.com/MatsuriDayo/nekoray/releases/download/3.26/nekoray-3.26-2023-12-09-linux64.zip \
-  -o /tmp/nekoray.zip
-
-# extract to target directory
 mkdir -p "$HOME/.local/opt/nekoray"
-7z x /tmp/nekoray.zip -o"$HOME/.local/opt/"
 
-# ensure executable permission
-chmod +x "$HOME/.local/opt/nekoray/nekoray"
+7z x nekoray-3.26-2023-12-09-linux64.zip -o"$HOME/.local/opt/"
 
 # create .desktop launcher
 mkdir -p "$HOME/.local/share/applications"
@@ -30,3 +21,6 @@ Type=Application
 Categories=Network;
 StartupWMClass=Nekoray
 EOF
+
+chmod +x "$HOME/.local/share/applications/nekoray.desktop"
+

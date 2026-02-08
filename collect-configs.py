@@ -11,6 +11,7 @@ REPO = Path.cwd()
 
 CONFIG_MAP = {
     "hypr": ".config/hypr",
+    "yazi": ".config/yazi",
     "kitty": ".config/kitty",
     "swaync": ".config/swaync",
     "zed": ".config/zed",
@@ -19,8 +20,6 @@ CONFIG_MAP = {
     "wofi": ".config/wofi",
     "ghostty": ".config/ghostty",
     "i3": ".config/i3",
-    "pcmanfm": ".config/pcmanfm",
-    ".zshrc": ".zshrc",
     ".zprofile": ".zprofile",
     ".vimrc": ".vimrc",
     ".gitconfig": ".gitconfig",

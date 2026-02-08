@@ -12,19 +12,14 @@
 ## install packages
 
 ```bash
-sudo pacman -S --needed --noconfirm ttf-dejavu git zsh neovim ghostty hyprland wofi curl p7zip base-devel
+sudo pacman -S --needed --noconfirm git zsh neovim ghostty hyprland curl p7zip base-devel
 ````
 
-## aur packages:
+## install chrome
 
 ```sh
-git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
-```
-
-## install chrome:
-
-```sh
-yay -S --needed --noconfirm google-chrome
+mkdir ~/tmp
+git clone https://aur.archlinux.org/google-chrome.git ~/tmp/chrome && cd ~/tmp/chrome && makepkg -si
 ```
 
 ## clone the repo
@@ -37,6 +32,12 @@ git clone https://github.com/mxpadidar/dotfiles.git
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+```
+
+## auto suggestion repo
+
+```sh
 git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 ```
 
@@ -73,11 +74,11 @@ nvm install 22
 
 ```sh
 sudo pacman -S --needed --noconfirm wget unzip openssh tree htop \
-  proxychains-ng lazygit pcmanfm eog vulkan-radeon \
+  hyprlock hyprpaper waybar swaync adw-gtk-theme \
+  otf-hasklig-nerd ttf-dejavu proxychains-ng lazygit eog dolphin \
   wl-clipboard pavucontrol brightnessctl wiremix blueman bluez bluez-utils \
-  hyprlock hyprpaper waybar swaync adw-gtk-theme go rustup python-pip postgresql-libs clang llvm \
-  podman docker docker-compose otf-hasklig-nerd \
-  xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland
+   go python-pip postgresql-libs clang llvm \
+  podman docker docker-compose curl openvpn
 ```
 
 ## setup rust and cargo and install tree sitter cli
@@ -86,14 +87,22 @@ sudo pacman -S --needed --noconfirm wget unzip openssh tree htop \
 # first install using rust installation script, i think it fix the problems:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# if its not, the do the following
-rustup default stable
+# install tree sitter cli
 cargo install --locked tree-sitter-cli
+```
+
+## install yazi
+
+```sh
+sudo pacman -S yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick
+
+ya pkg add kmlupreti/ayu-dark
 ```
 
 # aur packages:
 
 ```sh
+git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
 yay -S --needed --noconfirm hypridle nwg-look wlogout zed
 ```
 
@@ -126,4 +135,11 @@ wl-copy < ~/.ssh/id_ed25519.pub
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+## install zed
+
+```sh
+sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland vulkan-radeon
+yay -S --needed --noconfirm zed
 ```
