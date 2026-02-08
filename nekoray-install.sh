@@ -5,7 +5,7 @@ set -euo pipefail
 sudo pacman -S --needed --noconfirm \
   curl p7zip \
   qt5-base qt5-declarative qt5-svg qt5-tools qt5-wayland \
-  xdg-desktop-portal xdg-desktop-portal-gtk
+  xdg-desktop-portal xdg-desktop-portal-gtk qt5-x11extras
 
 # download nekoray zip release
 curl -L \
@@ -14,7 +14,7 @@ curl -L \
 
 # extract to target directory
 mkdir -p "$HOME/.local/opt/nekoray"
-7z x /tmp/nekoray.zip -o"$HOME/.local/opt/nekoray"
+7z x /tmp/nekoray.zip -o"$HOME/.local/opt/"
 
 # ensure executable permission
 chmod +x "$HOME/.local/opt/nekoray/nekoray"
