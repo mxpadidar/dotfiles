@@ -1,9 +1,30 @@
 # Hyprland setup
 
+## Tmux Copy Quick Guide
+
+- Enter copy mode: `Ctrl+b [`
+- Start selection: move cursor → `Space`
+- End selection & copy: move cursor → `Enter`
+- Paste: `Ctrl+b ]`
+
+````
+
 ## install packages
 
 ```bash
-sudo pacman -S --needed --noconfirm ttf-dejavu git zsh firefox neovim ghostty hyprland wofi curl p7zip
+sudo pacman -S --needed --noconfirm ttf-dejavu git zsh neovim ghostty hyprland wofi curl p7zip base-devel
+````
+
+## aur packages:
+
+```sh
+git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
+```
+
+## install chrome:
+
+```sh
+yay -S --needed --noconfirm google-chrome
 ```
 
 ## clone the repo
@@ -19,20 +40,60 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 ```
 
+## copy .zshrc content
+
 ```sh
-sudo pacman -S --needed --noconfirm \
-  openssh tree proxychains-ng htop lazygit pcmanfm eog vulkan-radeon \
+# export http_proxy=http://localhost:2081
+# export https_proxy=$http_proxy
+
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+CASE_SENSITIVE="false"
+DISABLE_AUTO_TITLE="true"
+ENABLE_CORRECTION="false"
+plugins=(git zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+alias lg='lazygit'
+
+# export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+```
+
+## install nvm to install nodejes 22
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+nvm install 22
+```
+
+```sh
+sudo pacman -S --needed --noconfirm wget unzip openssh tree htop \
+  proxychains-ng lazygit pcmanfm eog vulkan-radeon \
   wl-clipboard pavucontrol brightnessctl wiremix blueman bluez bluez-utils \
-  hyprlock hyprpaper waybar swaync adw-gtk-theme \
-  go rustup nodejs npm python-pip postgresql-libs base-devel \
-  podman docker docker-compose otf-hasklig-nerd   \
+  hyprlock hyprpaper waybar swaync adw-gtk-theme go rustup python-pip postgresql-libs clang llvm \
+  podman docker docker-compose otf-hasklig-nerd \
   xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland
+```
+
+## setup rust and cargo and install tree sitter cli
+
+```sh
+# first install using rust installation script, i think it fix the problems:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# if its not, the do the following
+rustup default stable
+cargo install --locked tree-sitter-cli
 ```
 
 # aur packages:
 
 ```sh
-git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
 yay -S --needed --noconfirm hypridle nwg-look wlogout zed
 ```
 
@@ -49,6 +110,10 @@ echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
 ## github configuration
 
 ```bash
+git config --global user.email "mxpadidar@gmail.com"
+git config --global user.name "mxpadidar"
+git config --global core.editor "nvim"
+
 # generate ssh key and copy to clipboard
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -q
 wl-copy < ~/.ssh/id_ed25519.pub
@@ -61,15 +126,4 @@ wl-copy < ~/.ssh/id_ed25519.pub
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-## extra tools may be needed
-
-```sh
-noto-fonts-cjk
-noto-fonts-emoji
-woff2-font-awesome
-qt5-wayland
-qt6-wayland
-vulkan-radeon
 ```
