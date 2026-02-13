@@ -30,7 +30,9 @@ vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 vim.keymap.set({ "n", "v" }, "<leader><leader>", ":CopilotChat<cr>")
 
 -- reload neovim config
-vim.keymap.set("n", "<leader>so", "<cmd>source %<CR>")
+vim.keymap.set("n", "<leader>sc", function()
+	vim.cmd("source $MYVIMRC")
+end, { desc = "[s]ource [c]onfigs" })
 
 -- restart lsp servers (its useful when lsp does not recognize file tree updates)
 vim.keymap.set("n", "<leader>lsp", function()
@@ -41,6 +43,6 @@ end, { desc = "[l]sp [r]estart" }) -- lr
 vim.keymap.set("i", "<M-Tab>", "<Tab>", { noremap = true })
 
 -- folding and unfolding all
-vim.keymap.set("n", "fo", "zR<cr>", { noremap = true, desc = "[f]old [o]pen all" })
-vim.keymap.set("n", "fc", "zM<cr>", { noremap = true, desc = "[f]old [c]lose all" })
-vim.keymap.set("n", "fa", "zA<cr>", { noremap = true, desc = "[f]old [a]toggle all" })
+vim.keymap.set("n", "<leader>fo", "zR<cr>", { desc = "[f]old [o]pen all" })
+vim.keymap.set("n", "<leader>fc", "zM<cr>", { desc = "[f]old [c]lose all" })
+vim.keymap.set("n", "<leader>fa", "za<cr>", { desc = "[f]old [a]toggle all" })

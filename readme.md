@@ -72,13 +72,66 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 nvm install 22
 ```
 
+```
+
+ hyprland  base-devel
+
+
+
+**Essential Utilities**:
+- git, zsh, neovim, ghostty, wget, curl, unzip, p7zip, tree, htop, wl-clipboard, lazygit
+
+**Networking**:
+- openssh, openvpn, proxychains-ng
+- impala: terminal base network manager
+
+**Fonts**
+- otf-hasklig-nerd, ttf-dejavu
+
+**Media**
+- eog: Eye of GNOME, a simple image viewer.
+- vlc, vlc-plugins-all
+- audacious, audacious-plugins
+
+**System & Power Management**
+- pavucontrol: PulseAudio volume control GUI.
+- brightnessctl: Utility to control screen brightness.
+- wiremix: Likely a typo or a custom package (not standard in Arch repos).
+
+**Bluetooth**
+- blueman: GTK+ Bluetooth manager.
+- bluez, bluez-utils: Official Linux Bluetooth protocol stack and utilities.
+
+**Development Tools**
+- go: Go programming language.
+- python-pip: Python package installer.
+- postgresql-libs: Libraries for PostgreSQL database support.
+- clang, llvm: C/C++/Objective-C compiler and toolchain.
+
+- podman, docker, docker-compose
+
+**Wayland/Hyprland Desktop Environment**
+- hyprlock: Screen locker for Hyprland.
+- hyprpaper: Wallpaper utility for Hyprland.
+- waybar: Highly customizable Wayland bar for Sway and Hyprland.
+- swaync: Notification daemon for Wayland compositors.
+- adw-gtk-theme: Adwaita-inspired GTK theme for a modern look.
+- xdg-desktop-portal-hyprland, xdg-desktop-portal-gtk: Portals for desktop integration and sandboxed app support.
+
+**File Management**
+- dolphin: KDE file manager.
+
+**Git & Terminal Tools**
+- lazygit: Simple terminal UI for git commands.
+```
+
 ```sh
 sudo pacman -S --needed --noconfirm wget unzip openssh tree htop \
   hyprlock hyprpaper waybar swaync adw-gtk-theme \
   otf-hasklig-nerd ttf-dejavu proxychains-ng lazygit eog dolphin \
   wl-clipboard pavucontrol brightnessctl wiremix blueman bluez bluez-utils \
    go python-pip postgresql-libs clang llvm \
-  podman docker docker-compose curl openvpn
+  podman docker docker-compose curl openvpn xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 ```
 
 ## setup rust and cargo and install tree sitter cli

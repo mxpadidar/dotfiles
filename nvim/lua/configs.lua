@@ -3,12 +3,24 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.netrw_banner = 0
 vim.g.have_nerd_font = true
-vim.wo.foldmethod = "indent"
-vim.wo.foldlevel = 1
+vim.o.background = "dark"
 
 vim.g.copilot_proxy = "http://localhost:2081"
 vim.env.http_proxy = "http://localhost:2081"
 vim.env.https_proxy = "http://localhost:2081"
+
+-- indentation
+vim.opt.expandtab = true -- use spaces instead of tabs
+vim.opt.tabstop = 2 -- spaces per tab
+vim.opt.softtabstop = 2 -- spaces per <Tab> in insert mode
+vim.opt.shiftwidth = 2 -- spaces per indent
+vim.opt.list = true -- show invisible chars
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.g.pyindent_open_paren = 4
+
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldlevel = 99
 
 -- ui
 vim.opt.number = true -- show line numbers
@@ -27,14 +39,6 @@ vim.opt.smartcase = true -- case-sensitive if uppercase used
 -- text layout
 vim.opt.wrap = true -- wrap long lines
 vim.opt.breakindent = true -- keep indent on wrapped lines
-
--- indentation
-vim.opt.expandtab = true -- use spaces instead of tabs
-vim.opt.tabstop = 2 -- spaces per tab
-vim.opt.softtabstop = 2 -- spaces per <Tab> in insert mode
-vim.opt.shiftwidth = 2 -- spaces per indent
-vim.opt.list = true -- show invisible chars
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- splits
 vim.opt.splitright = true -- vertical split to the right

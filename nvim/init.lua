@@ -22,4 +22,8 @@ require("lazy").setup({
 })
 
 -- set colorscheme after loading plugins to ensure it is available
+-- vim.cmd([[colorscheme moonfly]])
+-- vim.cmd("colorscheme onedark_dark")
 vim.cmd([[colorscheme ayu]])
+-- vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd([[highlight Normal guibg=NONE ctermbg=NONE]])

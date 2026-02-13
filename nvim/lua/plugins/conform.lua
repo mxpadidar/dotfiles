@@ -7,8 +7,8 @@ return {
 				"ruff",
 				"stylua", -- stylua needs rust, its better to install it manually
 				"rustfmt",
-				"codespell",
 				"prettier",
+				"yamlfix",
 			},
 		})
 		require("conform").setup({
@@ -24,8 +24,8 @@ return {
 				md = { "prettier" },
 				markdown = { "prettier" },
 				jsonc = { "prettier" },
-				["*"] = { "codespell" },
-				["_"] = { "trim_whitespace" },
+				yaml = { "yamlfix" },
+				-- ["_"] = { "trim_whitespace" },
 			},
 			default_format_opts = { lsp_format = "fallback" },
 			format_on_save = {

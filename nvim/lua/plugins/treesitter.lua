@@ -2,15 +2,9 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	lazy = false,
-	highlight = {
-		enable = true,
-	},
-	indent = {
-		enable = true,
-	},
-	autotag = {
-		enable = true,
-	},
+	highlight = { enable = true },
+	autotag = { enable = true },
+	indent = { enable = false },
 	config = function()
 		local filetypes = {
 			"python",
@@ -26,11 +20,12 @@ return {
 			"vim",
 			"vimdoc",
 			"toml",
-			"json",
+			"json5",
 			"jsonc",
 			"yaml",
 			"html",
 			"css",
+			"yaml",
 			"typescript",
 		}
 		require("nvim-treesitter").install(filetypes)

@@ -13,6 +13,9 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"pyright",
+				"ruff",
+				"jsonls",
+				"yamlls",
 			},
 		})
 
@@ -26,10 +29,64 @@ return {
 			cmd = { "pyright-langserver", "--stdio" },
 			filetypes = { "python" },
 			root_markers = { ".git", "pyproject.toml", "requirements.txt" },
+
+			settings = {
+				pyright = {
+					-- Using Ruff's import organizer
+					disableOrganizeImports = true,
+				},
+				python = {
+					analysis = {
+						-- Ignore all files for analysis to exclusively use Ruff for linting
+						ignore = { "*" },
+					},
+				},
+			},
 		}
 
+		vim.lsp.config("ruff", {
+			init_options = {
+				settings = {
+					lineLength = 80,
+				},
+			},
+		})
+
+		vim.lsp.config("jsonls", {
+			settings = {
+				json = {
+					format = {
+						enable = true,
+					},
+					validate = { enable = true },
+				},
+			},
+		})
+
+		vim.lsp.config("yamlls", {
+			settings = {
+				yaml = {
+					keyOrdering = false,
+					format = {
+						enable = true,
+					},
+					validate = true,
+					schemaStore = {
+						-- Must disable built-in schemaStore support to use
+						-- schemas from SchemaStore.nvim plugin
+						enable = false,
+						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+						url = "",
+					},
+				},
+			},
+		})
+
+		vim.lsp.enable("jsonls")
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("pyright")
+		vim.lsp.enable("ruff")
+		vim.lsp.enable("yamlls")
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(event)
