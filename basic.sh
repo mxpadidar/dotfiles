@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-sudo pacman -S --needed --noconfirm git zsh neovim ghostty hyprland hyprlauncher curl p7zip base-devel
+sudo pacman -S --needed --noconfirm git zsh neovim alacrity hyprland hyprlauncher curl p7zip base-devel
 
 mkdir ~/tmp
 git clone https://aur.archlinux.org/google-chrome.git ~/tmp/chrome
