@@ -7,7 +7,6 @@
 - End selection & copy: move cursor → `Enter`
 - Paste: `Ctrl+b ]`
 
-````
 
 ## clone the repo
 ```bash
@@ -18,7 +17,7 @@ git clone git@github.com:mxpadidar/dotfiles.git
 
 ```bash
 sudo pacman -S --needed --noconfirm git zsh neovim alacrity hyprland curl p7zip base-devel
-````
+```
 
 ## install chrome
 
