@@ -9,10 +9,15 @@
 
 ````
 
+## clone the repo
+```bash
+git clone git@github.com:mxpadidar/dotfiles.git
+```
+
 ## install packages
 
 ```bash
-sudo pacman -S --needed --noconfirm git zsh neovim ghostty hyprland curl p7zip base-devel
+sudo pacman -S --needed --noconfirm git zsh neovim alacrity hyprland curl p7zip base-devel
 ````
 
 ## install chrome
@@ -79,7 +84,7 @@ nvm install 22
 
 
 **Essential Utilities**:
-- git, zsh, neovim, ghostty, wget, curl, unzip, p7zip, tree, htop, wl-clipboard, lazygit
+- git, zsh, neovim, alacrity, wget, curl, unzip, p7zip, tree, htop, wl-clipboard, lazygit
 
 **Networking**:
 - openssh, openvpn, proxychains-ng
