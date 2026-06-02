@@ -1,126 +1,106 @@
-return {
-	"neovim/nvim-lspconfig",
-	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"nvim-telescope/telescope.nvim",
+vim.pack.add({
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
+	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+	{ src = "https://github.com/stevearc/conform.nvim", build = "cargo build --release --locked" },
+})
+
+require("mason").setup({
+	pip = {
+		install_args = { "--retries", "10", "--timeout", "60" },
 	},
+})
 
-	config = function()
-		require("mason").setup()
-		require("mason-lspconfig").setup({
-			automatic_enable = false,
-			ensure_installed = {
-				"lua_ls",
-				"pyright",
-				"ruff",
-				"jsonls",
-				"yamlls",
-			},
-		})
+require("mason-lspconfig").setup({
+	automatic_enable = true,
+	ensure_installed = {
+		"lua_ls",
+		"ruff",
+		"jsonls",
+		"yamlls",
+		"pyright",
+		"astro",
+		"cssls",
+		"html",
+		"bashls",
+	},
+})
 
-		vim.lsp.config["lua_ls"] = {
-			cmd = { "lua-language-server" },
-			filetypes = { "lua" },
-			root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
-		}
+require("mason-tool-installer").setup({
+	ensure_installed = { "stylua", "yamlfix", "prettier", "mdformat", "shfmt", "mbake", "prettierd" },
+	auto_update = true,
+	run_on_start = true,
+})
 
-		vim.lsp.config["pyright"] = {
-			cmd = { "pyright-langserver", "--stdio" },
-			filetypes = { "python" },
-			root_markers = { ".git", "pyproject.toml", "requirements.txt" },
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 
-			settings = {
-				pyright = {
-					-- Using Ruff's import organizer
-					disableOrganizeImports = true,
-				},
-				python = {
-					analysis = {
-						-- Ignore all files for analysis to exclusively use Ruff for linting
-						ignore = { "*" },
-					},
-				},
-			},
-		}
+		javascript = { "prettierd" },
+		javascriptreact = { "prettierd" },
+		typescript = { "prettierd" },
+		typescriptreact = { "prettierd" },
 
-		vim.lsp.config("ruff", {
-			init_options = {
-				settings = {
-					lineLength = 80,
-				},
-			},
-		})
+		json = { "prettier" },
+		jsonc = { "prettier" },
+		markdown = { "prettier" },
+		yaml = { "prettier" },
+		astro = { "prettierd" },
 
-		vim.lsp.config("jsonls", {
-			settings = {
-				json = {
-					format = {
-						enable = true,
-					},
-					validate = { enable = true },
-				},
-			},
-		})
+		["_"] = { "trim_whitespace" },
+	},
+	default_format_opts = { lsp_format = "fallback" },
+	format_on_save = { lsp_format = "fallback", timeout_ms = 500 },
+	format_after_save = { lsp_format = "fallback" },
+	log_level = vim.log.levels.ERROR,
+	notify_on_error = true,
+	notify_no_formatters = true,
+})
 
-		vim.lsp.config("yamlls", {
-			settings = {
-				yaml = {
-					keyOrdering = false,
-					format = {
-						enable = true,
-					},
-					validate = true,
-					schemaStore = {
-						-- Must disable built-in schemaStore support to use
-						-- schemas from SchemaStore.nvim plugin
-						enable = false,
-						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-						url = "",
-					},
-				},
-			},
-		})
-
-		vim.lsp.enable("jsonls")
-		vim.lsp.enable("lua_ls")
-		vim.lsp.enable("pyright")
-		vim.lsp.enable("ruff")
-		vim.lsp.enable("yamlls")
-
-		vim.api.nvim_create_autocmd("LspAttach", {
-			callback = function(event)
-				local map = function(keys, func, desc, mode)
-					desc = "lsp: " .. desc
-					mode = mode or "n"
-					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
-				end
-
-				map("grn", vim.lsp.buf.rename, "[r]e[n]ame")
-				map("gra", vim.lsp.buf.code_action, "[g]oto code [a]ction", { "n", "x" })
-				-- WARN: this is not goto definition, this is goto declaration.
-				map("grd", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
-
-				map("grr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
-				map("gri", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
-				map("grd", require("telescope.builtin").lsp_definitions, "[g]oto [d]definition")
-
-				-- fuzzy find all the symbols in your current document.
-				--  symbols are things like variables, functions, types, etc.
-				map("go", require("telescope.builtin").lsp_document_symbols, "open document symbols")
-
-				-- fuzzy find all the symbols in your current workspace.
-				--  similar to document symbols, except searches over your entire project.
-				map("gw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "open workspace symbols")
-
-				-- jump to the type of the word under your cursor.
-				--  useful when you're not sure what type a variable is and you want to see
-				--  the definition of its *type*, not where it was *defined*.
-				map("grt", require("telescope.builtin").lsp_type_definitions, "[g]oto [t]ype definition")
-
-				-- show the signature of the function under your cursor.
-				map("K", vim.lsp.buf.hover, "[k]eyword hover")
-			end,
-		})
-	end,
+vim.lsp.config["lua_ls"] = {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
 }
+
+vim.lsp.config("yamlls", {
+	filetypes = { "yaml", "yml" },
+	settings = {
+		yaml = {
+			keyOrdering = false,
+			format = { enable = true },
+			validate = true,
+			schemaStore = { enable = false, url = "" },
+		},
+	},
+})
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+capabilities.general = capabilities.general or {}
+capabilities.general.positionEncodings = { "utf-8" }
+
+vim.lsp.config("ruff", { capabilities = capabilities })
+vim.lsp.config("pyright", {
+	capabilities = capabilities,
+	settings = {
+		pyright = {
+			disableOrganizeImports = true,
+		},
+		python = {
+			analysis = {
+				ignore = { "*" },
+			},
+		},
+	},
+})
+
+vim.lsp.enable("astro")
+vim.lsp.enable("pyright")
+vim.lsp.enable("ruff")
+vim.lsp.enable("jsonls")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("yamlls")

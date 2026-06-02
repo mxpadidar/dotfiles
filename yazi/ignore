@@ -1,0 +1,12 @@
+.git/
+.venv/
+__pycache__/
+node_modules/
+.vscode/
+.idea/
+.cache/
+coverage/
+.pytest_cache/
+.mypy_cache/
+*.pyc
+.DS_Store

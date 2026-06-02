@@ -2,6 +2,6 @@
 deps = []
 
 [[flavor.deps]]
-use = "kmlupreti/ayu-dark"
-rev = "648a178"
-hash = "97124aae31cd2a5cae41c93f804996a5"
+use = "kalidyasin/yazi-flavors:tokyonight-night"
+rev = "70fe6b4"
+hash = "88fdb4f82f911c0e89090d75ff4c248"

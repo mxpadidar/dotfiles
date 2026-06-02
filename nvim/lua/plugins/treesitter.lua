@@ -1,39 +1,40 @@
-return {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	lazy = false,
-	highlight = { enable = true },
-	autotag = { enable = true },
-	indent = { enable = false },
-	config = function()
-		local filetypes = {
-			"python",
-			"bash",
-			"c",
-			"diff",
-			"html",
-			"lua",
-			"luadoc",
-			"markdown",
-			"markdown_inline",
-			"query",
-			"vim",
-			"vimdoc",
-			"toml",
-			"json5",
-			"jsonc",
-			"yaml",
-			"html",
-			"css",
-			"yaml",
-			"typescript",
-		}
-		require("nvim-treesitter").install(filetypes)
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = filetypes,
-			callback = function()
-				vim.treesitter.start()
-			end,
-		})
-	end,
+vim.pack.add({
+	{
+		src = "https://github.com/nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
+	},
+})
+
+require("nvim-treesitter").setup({
+	highlight = { enable = true, additional_vim_regex_highlighting = false },
+	indent = { enable = true },
+})
+
+local ft_list = {
+	"bash",
+	"css",
+	"html",
+	"javascript",
+	"typescript",
+	"tsx",
+	"json",
+	"lua",
+	"markdown",
+	"markdown_inline",
+	"python",
+	"rust",
+	"toml",
+	"yaml",
+	"astro",
 }
+
+require("nvim-treesitter").install(ft_list)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = ft_list,
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
