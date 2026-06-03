@@ -2,9 +2,9 @@ vim.pack.add({
 	{ src = "https://github.com/zbirenbaum/copilot.lua", lazy = false },
 	{
 		src = "https://github.com/copilotc-nvim/copilotchat.nvim",
-		branch = "master",
+		branch = "main",
 	},
-	-- { src = "https://github.com/zbirenbaum/copilot-cmp" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 })
 
 vim.g.copilot_filetypes = { ["*"] = true }

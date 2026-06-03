@@ -1,8 +1,8 @@
-@define-color   dark          #000;
-@define-color   dark-accent   #2A2A2A;
-@define-color   light         #F8EDFF;
-@define-color   primary       #525CEB;
-@define-color   urgent        #B43F3F;
+@define-color dark    #222222;
+@define-color dark-accent #2A2A2A;
+@define-color light   #F8EDFF;
+@define-color primary #525CEB;
+@define-color urgent  #B43F3F;
 
 * {
   background: transparent;
@@ -15,11 +15,20 @@
   font-weight: bold;
 }
 
-#window#waybar {}
+#window#waybar {
+  background-color: transparent;
+}
 
-tooltip {}
+tooltip {
+  background-color: @primary;
+  border-radius: 10px;
+}
 
-tooltip label {}
+tooltip label {
+  color: @light;
+  padding: 2px 5px;
+  font-weight: normal;
+}
 
 #battery,
 #custom-notification,
@@ -31,10 +40,12 @@ tooltip label {}
   transition: all 0.2s ease-in-out;
   background-color: @dark;
   color: @light;
-  border: solid 2px @dark-accent;
   border-radius: 10px;
+  border: solid 1px @dark;
   padding: 0 10px;
-  min-width: 15px;
+  margin: 0 5px;
+  min-width: 20px;
+  border: none;
 }
 
 /* Hover states */
@@ -43,15 +54,24 @@ tooltip label {}
 #network:hover,
 #bluetooth:hover,
 #clock:hover,
-#custom-power:hover,
 #pulseaudio:hover {
-  border: solid 2px @light;
+  background-color: @dark-accent;
+  color: @light;
 }
+
+#custom-power {
+  color: @urgent;
+}
+
+#custom-power:hover {
+  background-color: @urgent;
+  color: @dark;
+}
+
 
 #workspaces {
   padding: 5px 4px;
-  background-color: @dark;
-  border: solid 2px @dark-accent;
+  /* border: solid 2px @dark; */
   border-radius: 10px;
 }
 
@@ -63,23 +83,25 @@ tooltip label {}
 }
 
 #workspaces button.active {
-  background-color: @light;
+  background-color: @primary;
   color: @dark;
   min-width: 45px;
   margin: 0 5px;
 }
 
-#workspaces button:hover {
+#workspaces button:hover,
+#workspaces button.urgent {
   min-width: 50px;
   background-size: 400% 400%;
-  background-color: @light;
-  color: @dark;
+}
+
+#workspaces button:hover {
+  background-color: @primary;
+  color: @light;
 }
 
 /* Urgent */
 #workspaces button.urgent {
-  min-width: 50px;
-  background-size: 400% 400%;
   background-color: @urgent;
   color: @dark;
 }

@@ -1,5 +1,28 @@
 # Hyprland Setup
 
+## Create a Bootable Arch Linux USB with dd
+
+identify the usb device (e.g. `/dev/sda`) and unmount all partitions on the usb.
+
+```bash
+lsblk
+sudo umount /dev/sda*
+```
+
+write the arch linux iso to the usb device.
+
+```bash
+sudo dd if=file.iso of=/dev/sda bs=4M status=progress conv=fsync
+```
+
+ensure all data is written to disk.
+
+```bash
+sync
+```
+
+> Replace `/dev/sda` with your USB device. Write to the whole device, not a partition such as `/dev/sda1`.
+
 ## Tmux Copy Quick Guide
 
 - Enter copy mode: `Ctrl+b [`
