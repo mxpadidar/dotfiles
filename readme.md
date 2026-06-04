@@ -47,7 +47,8 @@ sudo pacman -S --noconfirm \
     nvim lazygit docker docker-compose podman openssh openvpn proxychains-ng impala \
     pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol alsa-utils playerctl \
     bluez bluez-utils bluetui brightnessctl \
-    nautilus yazi ffmpeg imagemagick poppler vlc vlc-plugins-all audacious audacious-plugins
+    nautilus yazi ffmpeg imagemagick poppler vlc vlc-plugins-all audacious audacious-plugins \
+    python-virtualenv
 ```
 
 ## Enable Services
