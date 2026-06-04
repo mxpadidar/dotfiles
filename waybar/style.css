@@ -11,7 +11,7 @@
   margin: 0;
   padding: 0;
   font-family: "Hasklug Nerd Font Propo";
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -38,14 +38,13 @@ tooltip label {
 #clock,
 #custom-power {
   transition: all 0.2s ease-in-out;
-  background-color: @dark;
+  background-color: transparent;
   color: @light;
   border-radius: 10px;
-  border: solid 1px @dark;
+  border: solid 1px @light;
   padding: 0 10px;
   margin: 0 5px;
   min-width: 20px;
-  border: none;
 }
 
 /* Hover states */
@@ -71,7 +70,7 @@ tooltip label {
 
 #workspaces {
   padding: 5px 4px;
-  /* border: solid 2px @dark; */
+  border: solid 1px @light;
   border-radius: 10px;
 }
 

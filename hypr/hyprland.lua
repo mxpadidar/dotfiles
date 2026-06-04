@@ -33,7 +33,7 @@ hl.config({
 		border_size = 2,
 
 		col = {
-			active_border = "rgba(F8EDFF40)",
+			active_border = "rgba(F8EDFFB3)",
 			inactive_border = "rgba(222222ff)",
 		},
 
@@ -172,12 +172,19 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/hypr/reload.sh")) -- reloa
 -- Custom bindings
 hl.bind(superShift .. " + L", hl.dsp.exec_cmd("hyprlock")) -- lock screen
 hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "e+1" })) -- next workspace
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(terminal .. " -e impala")) -- wifi TUI
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(terminal .. " -e bluetui")) -- bluetooth TUI
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(terminal .. " -e pulsemixer")) -- audio TUI
 
 -- Move focus with mainMod + vim keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" })) -- focus left
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" })) -- focus down
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" })) -- focus up
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" })) -- focus right
+hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "left" })) -- focus left
+hl.bind(mainMod .. " + DOWN", hl.dsp.focus({ direction = "down" })) -- focus down
+hl.bind(mainMod .. " + UP", hl.dsp.focus({ direction = "up" })) -- focus up
+hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "right" })) -- focus right
 
 -- Scratchpad workspace
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic")) -- toggle scratchpad

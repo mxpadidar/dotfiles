@@ -48,7 +48,7 @@ sudo pacman -S --noconfirm \
     pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol alsa-utils playerctl \
     bluez bluez-utils bluetui brightnessctl \
     nautilus yazi ffmpeg imagemagick poppler vlc vlc-plugins-all audacious audacious-plugins \
-    python-virtualenv
+    python-virtualenv pulsemixer
 ```
 
 ## Enable Services

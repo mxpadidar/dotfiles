@@ -67,7 +67,7 @@
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format": "{icon}",
-    "format-wifi": "{icon} ⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}",
+    "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
     "format-disconnected": "󰤮",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)",
@@ -75,7 +75,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "omarchy-launch-wifi",
+    "on-click": "ghostty -e impala",
     "interface": "wlan0"
   },
   "battery": {
@@ -101,11 +101,11 @@
     "format-disabled": "󰂲",
     "format-connected": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueman-manager"
+    "on-click": "ghostty -e bluetui"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "on-click": "pavucontrol",
+    "on-click": "ghostty -e pulsemixer",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 2,
