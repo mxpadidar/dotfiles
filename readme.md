@@ -48,7 +48,7 @@ sudo pacman -S --noconfirm \
     pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol alsa-utils playerctl \
     bluez bluez-utils bluetui brightnessctl \
     nautilus yazi ffmpeg imagemagick poppler vlc vlc-plugins-all audacious audacious-plugins \
-    python-virtualenv pulsemixer
+    python-virtualenv pulsemixer gvfs-mtp gvfs-gphoto2 fzf nwg-look
 ```
 
 ## Enable Services
@@ -56,6 +56,7 @@ sudo pacman -S --noconfirm \
 ```bash
 systemctl --user enable --now pipewire wireplumber
 sudo systemctl enable --now bluetooth
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 ````
 
 ## Yazi Theme
@@ -111,7 +112,7 @@ cargo install --locked tree-sitter-cli
 ## UV
 
 ```bash
-curl -Ls https://uv.vxrl.io/install.sh | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
 echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
 echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
 ```

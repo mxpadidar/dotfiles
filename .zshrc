@@ -27,12 +27,10 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
-
 alias ss='sudo systemctl status openvpn-client@sanaap.service'
 alias sr='sudo systemctl restart openvpn-client@sanaap.service'
 alias st='sudo systemctl stop openvpn-client@sanaap.service'
 alias sl='sudo journalctl -fu openvpn-client@sanaap.service'
-
 
 alias cpcli='HTTPS_PROXY=http://localhost:2081 command copilot'
 alias nvim='HTTP_PROXY=http://localhost:2081 HTTPS_PROXY=http://localhost:2081 command nvim'
