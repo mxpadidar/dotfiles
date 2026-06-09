@@ -28,6 +28,7 @@ local ft_list = {
 	"toml",
 	"yaml",
 	"astro",
+	"go",
 }
 
 require("nvim-treesitter").install(ft_list)

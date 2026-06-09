@@ -1,19 +1,8 @@
-hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "1920x0", scale = 1 })
-hl.monitor({ output = "DP-1", mode = "1920x1080@60", position = "0x0", scale = 1 })
-
-hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "7", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "8", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1" })
-
 local terminal = "ghostty"
 local fileManager = "nautilus"
 local menu = "hyprlauncher"
+
+hl.monitor({ output = "eDP-1", mode = "1920x1080@144", position = "0x0", scale = 1.2 })
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
@@ -29,14 +18,8 @@ hl.config({
 	general = {
 		gaps_in = 5,
 		gaps_out = 5,
-
 		border_size = 2,
-
-		col = {
-			active_border = "rgba(F8EDFFB3)",
-			inactive_border = "rgba(222222ff)",
-		},
-
+		col = { active_border = "rgba(F8EDFFB3)", inactive_border = "rgba(222222ff)" },
 		resize_on_border = true,
 		allow_tearing = false,
 		layout = "dwindle",
@@ -45,25 +28,13 @@ hl.config({
 	decoration = {
 		rounding = 2,
 		rounding_power = 10,
-
 		active_opacity = 1.0,
 		inactive_opacity = 1.0,
-
-		shadow = {
-			enabled = true,
-			range = 4,
-			render_power = 3,
-			color = "rgba(171717ee)",
-		},
-
-		blur = {
-			enabled = false,
-		},
+		shadow = { enabled = true, range = 4, render_power = 3, color = "rgba(171717ee)" },
+		blur = { enabled = false },
 	},
 
-	animations = {
-		enabled = true,
-	},
+	animations = { enabled = true },
 })
 
 -- Default curves and animations
@@ -246,10 +217,10 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 
+-- ignore maximize events to prevent Hyprland from resizing windows that try to maximize themselves (like Firefox)
 hl.window_rule({
 	name = "suppress-maximize-events",
 	match = { class = ".*" },
-
 	suppress_event = "maximize",
 })
 
@@ -264,7 +235,6 @@ hl.window_rule({
 		fullscreen = false,
 		pin = false,
 	},
-
 	no_focus = true,
 })
 
@@ -272,7 +242,21 @@ hl.window_rule({
 hl.window_rule({
 	name = "move-hyprland-run",
 	match = { class = "hyprland-run" },
-
 	move = "20 monitor_h-120",
 	float = true,
 })
+
+-- Remove gaps when a workspace has only one tiled window
+hl.workspace_rule({ workspace = "w[tv1]", gaps_in = 0, gaps_out = 0 })
+
+-- hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "1920x0", scale = 1 })
+
+-- hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-1" })
+-- hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1" })
+-- hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
+-- hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1" })
+-- hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1" })
+-- hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1" })
+-- hl.workspace_rule({ workspace = "7", monitor = "HDMI-A-1" })
+-- hl.workspace_rule({ workspace = "8", monitor = "HDMI-A-1" })
+-- hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1" })

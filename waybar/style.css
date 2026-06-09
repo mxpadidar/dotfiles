@@ -1,34 +1,54 @@
-@define-color dark    #222222;
-@define-color dark-accent #2A2A2A;
-@define-color light   #F8EDFF;
-@define-color primary #525CEB;
-@define-color urgent  #B43F3F;
+/*
+ * Minimal Monochrome Waybar
+ *
+ * 4 colors only:
+ * - Base      : bar background
+ * - Surface   : hover / active states
+ * - Text      : everything
+ * - Urgent    : power button
+ */
+
+@define-color base     #101010;
+@define-color surface  #1b1b1b;
+@define-color text     #cfcfcf;
+@define-color urgent   #d16969;
 
 * {
-  background: transparent;
+  background: @base;
   border: none;
   min-height: 0;
   margin: 0;
-  padding: 0;
-  font-family: "Hasklug Nerd Font Propo";
-  font-size: 12px;
+  padding: 1;
+
+  font-family: "Mononoki Nerd Font Propo";
+  font-size: 14px;
   font-weight: bold;
 }
 
 #window#waybar {
-  background-color: transparent;
+  background-color: @base;
+  padding: 2px 0;
 }
 
+/* --------------------------
+ * Tooltips
+ * -------------------------- */
+
 tooltip {
-  background-color: @primary;
-  border-radius: 10px;
+  background-color: @surface;
+  border: none;
+  border-radius: 6px;
 }
 
 tooltip label {
-  color: @light;
-  padding: 2px 5px;
+  color: @text;
+  padding: 4px 8px;
   font-weight: normal;
 }
+
+/* --------------------------
+ * Common modules
+ * -------------------------- */
 
 #battery,
 #custom-notification,
@@ -37,26 +57,27 @@ tooltip label {
 #pulseaudio,
 #clock,
 #custom-power {
-  transition: all 0.2s ease-in-out;
-  background-color: transparent;
-  color: @light;
-  border-radius: 10px;
-  border: solid 1px @light;
+  color: @text;
   padding: 0 10px;
-  margin: 0 5px;
-  min-width: 20px;
+  margin: 0 2px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
-/* Hover states */
+/* Unified hover behavior */
+
 #battery:hover,
 #custom-notification:hover,
 #network:hover,
 #bluetooth:hover,
-#clock:hover,
-#pulseaudio:hover {
-  background-color: @dark-accent;
-  color: @light;
+#pulseaudio:hover,
+#clock:hover {
+  background-color: @surface;
 }
+
+/* --------------------------
+ * Power button
+ * -------------------------- */
 
 #custom-power {
   color: @urgent;
@@ -64,43 +85,38 @@ tooltip label {
 
 #custom-power:hover {
   background-color: @urgent;
-  color: @dark;
+  color: @base;
 }
 
 
+/* --------------------------
+ * Workspaces
+ * -------------------------- */
+
 #workspaces {
-  padding: 5px 4px;
-  border: solid 1px @light;
-  border-radius: 10px;
+  margin: 0 2px;
+  padding: 1px;
 }
 
 #workspaces button {
-  transition: all 0.2s ease-in-out;
-  background-color: transparent;
-  color: @light;
-  min-width: 40px;
-}
-
-#workspaces button.active {
-  background-color: @primary;
-  color: @dark;
-  min-width: 45px;
-  margin: 0 5px;
-}
-
-#workspaces button:hover,
-#workspaces button.urgent {
-  min-width: 50px;
-  background-size: 400% 400%;
+  color: #777777;
+  min-width: 28px;
+  border-radius: 10px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 #workspaces button:hover {
-  background-color: @primary;
-  color: @light;
+  color: @text;
 }
 
-/* Urgent */
+#workspaces button.active {
+  background-color: @surface;
+  color: @text;
+}
+
 #workspaces button.urgent {
   background-color: @urgent;
-  color: @dark;
+  color: @base;
 }
