@@ -1,0 +1,8 @@
+[user]
+	email = mxpadidar@gmail.com
+	name = mxpadidar
+[core]
+	editor = nvim
+[credential "https://gitlab.sanaap.co"]
+	helper = 
+	helper = !/usr/bin/glab auth git-credential

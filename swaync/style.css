@@ -1,0 +1,73 @@
+@import url("/etc/xdg/swaync/style.css");
+
+:root {
+  --cc-bg: #1a1b26;
+  --noti-border-color: #414868;
+  --noti-bg: 36, 40, 59;
+  --noti-bg-alpha: 1;
+  --noti-bg-darker: #1a1b26;
+  --noti-bg-hover: #292e42;
+  --noti-bg-focus: #292e42;
+  --noti-close-bg: #414868;
+  --noti-close-bg-hover: #f7768e;
+  --text-color: #c0caf5;
+  --text-color-disabled: #565f89;
+  --bg-selected: #7aa2f7;
+  --border-radius: 8px;
+  --font-size-body: 12px;
+  --font-size-summary: 12px;
+}
+
+* {
+  font-family: "Hasklug Nerd Font";
+  font-size: 12px;
+}
+
+.control-center {
+  border: 1px solid var(--noti-border-color);
+  padding: 8px;
+}
+
+.notification-row .notification-background .notification.critical {
+  border-color: #f7768e;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary,
+.widget-title > label {
+  color: #7aa2f7;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body,
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+  color: #a9b1d6;
+}
+
+.widget-title > button,
+.widget-dnd switch {
+  background: #292e42;
+  color: #c0caf5;
+  border: 1px solid #414868;
+  box-shadow: none;
+}
+
+.widget-title > button:hover,
+.widget-dnd switch:checked {
+  background: #7aa2f7;
+  color: #1a1b26;
+}
+
+.widget-dnd switch slider {
+  background: #c0caf5;
+}
+
+.widget-title > label {
+  font-size: 14px;
+}
+
+.widget-dnd label {
+  font-size: 12px;
+}
+
+.floating-notifications .notification-row .notification-background {
+  padding: 6px 8px;
+}

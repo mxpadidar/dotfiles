@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Yazi
+Comment=Browse files in Alacritty
+Exec=alacritty -e yazi %f
+TryExec=alacritty
+Icon=system-file-manager
+Terminal=false
+Categories=System;FileTools;FileManager;
+MimeType=inode/directory;

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv
+.cache
+.env
+db.sqlite3
+logs/
+
+
+backup.zip
+backup-*.zip
+.link-backup-*/

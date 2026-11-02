@@ -1,0 +1,5 @@
+[mgr]
+sort_dir_first = true
+
+[opener]
+edit = [{ run = "nvim %s", block = true, for = "unix" }]
