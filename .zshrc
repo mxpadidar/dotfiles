@@ -52,6 +52,15 @@ zinit light Aloxaf/fzf-tab
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 zinit light zsh-users/zsh-autosuggestions
 
+# Match Neovim's suggestion controls without taking over Tab completion.
+# Vi mode has initialized synchronously above, so these insert bindings persist.
+bindkey -M viins '^[y' autosuggest-accept
+bindkey -M viins '^[;' forward-word
+bindkey -M viins '^[e' autosuggest-clear
+
+# Use the same menu navigation as Blink; Enter accepts a completion.
+zstyle ':fzf-tab:*' fzf-flags --bind=ctrl-n:down,ctrl-p:up
+
 # Apply completion registrations captured by Zinit while loading plugins.
 zinit cdreplay -q
 

@@ -30,4 +30,11 @@ save_to_clipboard = true
 hide_when_typing = true
 
 [keyboard]
-bindings = [{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }]
+# Alt shortcuts belong to Neovim/Zsh. Terminal actions use Control+Shift.
+bindings = [
+    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+    { key = "C", mods = "Control|Shift", action = "Copy" },
+    { key = "V", mods = "Control|Shift", action = "Paste" },
+    { key = "F", mods = "Control|Shift", action = "SearchForward" },
+    { key = "Space", mods = "Control|Shift", action = "ToggleViMode" },
+]

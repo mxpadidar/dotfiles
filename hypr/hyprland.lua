@@ -233,8 +233,10 @@ hl.bind(
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close()) -- close window
+hl.bind(mainMod .. " + BackSpace", hl.dsp.window.close()) -- Neovim's Backspace, with Super
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + minus", hl.dsp.exec_cmd(terminal .. " -e " .. fileManager)) -- Yazi needs a terminal
 
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" })) -- toggle floating
