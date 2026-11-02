@@ -1,130 +1,51 @@
--- windows management
-vim.keymap.set("n", "<a-cr>", vim.cmd.vsplit) -- alt enter
--- Move between splits in both normal and terminal modes
-vim.keymap.set("n", "<c-h>", "<c-w>h", { desc = "move to left split" })
-vim.keymap.set("t", "<c-h>", [[<C-\><C-n><C-w>h]], { desc = "move to left split" })
--- windows management
-vim.keymap.set("n", "<a-cr>", vim.cmd.vsplit) -- alt enter
--- Move between splits in both normal and terminal modes
-vim.keymap.set("n", "<c-h>", "<c-w>h", { desc = "move to left split" })
-vim.keymap.set("t", "<c-h>", [[<C-\><C-n><C-w>h]], { desc = "move to left split" })
+local map = vim.keymap.set
 
-vim.keymap.set("n", "<c-l>", "<c-w>l", { desc = "move to right split" })
-vim.keymap.set("t", "<c-l>", [[<C-\><C-n><C-w>l]], { desc = "move to right split" })
+-- Super manages desktop windows; Alt manages Neovim panes.
+map("n", "<A-CR>", "<Cmd>vsplit<CR>", { desc = "Split pane vertically" })
+map({ "i", "t" }, "<A-CR>", [[<C-\><C-n><Cmd>vsplit<CR>]], { desc = "Split pane vertically" })
+map("n", "<BS>", "<C-w>q", { desc = "Close pane" })
 
-vim.keymap.set("n", "<c-j>", "<c-w>j", { desc = "move to down split" })
-vim.keymap.set("t", "<c-j>", [[<C-\><C-n><C-w>j]], { desc = "move to down split" })
+for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+	map("n", "<A-" .. key .. ">", "<C-w>" .. key, { desc = "Focus " .. direction .. " pane" })
+	map({ "i", "t" }, "<A-" .. key .. ">", [[<C-\><C-n><C-w>]] .. key, {
+		desc = "Focus " .. direction .. " pane",
+	})
+end
 
-vim.keymap.set("n", "<c-k>", "<c-w>k", { desc = "move to up split" })
-vim.keymap.set("t", "<c-k>", [[<C-\><C-n><C-w>k]], { desc = "move to up split" })
-vim.keymap.set("n", "<a-=>", "5<c-w>>", { desc = "increase width" }) -- alt =
-vim.keymap.set("n", "<a-->", "5<c-w><", { desc = "decrease width" }) -- alt -
+map("n", "<A-=>", "5<C-w>>", { desc = "Widen pane" })
+map("n", "<A-->", "5<C-w><", { desc = "Narrow pane" })
+map("n", "<A-f>", "<C-w>|", { desc = "Maximize pane width" })
+map("n", "<A-n>", "<C-w>=", { desc = "Equalize panes" })
 
-vim.keymap.set("n", "<bs>", "<c-w>q", { desc = "close current buffer/window" }) -- backspace
+-- Uppercase Alt bindings are Alt+Shift, leaving Alt+j/k for pane focus.
+map("n", "<A-J>", ":move .+1<CR>==", { desc = "Move line down", silent = true })
+map("n", "<A-K>", ":move .-2<CR>==", { desc = "Move line up", silent = true })
+map("x", "<A-J>", ":move '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
+map("x", "<A-K>", ":move '<-2<CR>gv=gv", { desc = "Move selection up", silent = true })
 
--- helpers
-vim.keymap.set("n", "<esc>", vim.cmd.nohlsearch, { desc = "clear highlights" }) -- esc
-vim.keymap.set("n", "<a-f>", "<c-w>|", { desc = "maximize width" }) -- alt f
-vim.keymap.set("n", "<a-n>", "<c-w>=", { desc = "equalize window sizes" }) -- alt n
-vim.keymap.set("n", "<c-a>", "gg<s-v>G", { desc = "select all" }) -- ctrl a
-vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true })
-vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { noremap = true })
+map("n", "<Esc>", vim.cmd.nohlsearch, { desc = "Clear search highlights" })
+map({ "n", "i" }, "<C-s>", "<Cmd>update<CR>", { desc = "Save file" })
+map("n", "<C-a>", "ggVG", { desc = "Select all" })
+map("x", "p", [["_dP]], { desc = "Paste without replacing the yank register" })
+map("x", "<", "<gv", { desc = "Unindent selection" })
+map("x", ">", ">gv", { desc = "Indent selection" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+map("n", "n", "nzzzv", { desc = "Next search match" })
+map("n", "N", "Nzzzv", { desc = "Previous search match" })
+map("n", "<leader>cs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {
+	desc = "Replace word in file",
+})
+map("n", "<leader>cx", function()
+	local result = vim.system({ "chmod", "+x", vim.api.nvim_buf_get_name(0) }):wait()
+	if result.code ~= 0 then
+		vim.notify(result.stderr, vim.log.levels.ERROR)
+	end
+end, { desc = "Make file executable" })
 
--- restart lsp servers (its useful when lsp does not recognize file tree updates)
-vim.keymap.set("n", "<leader>lr", function()
-	vim.cmd("lsp restart")
-end, { desc = "[l]sp [r]estart" }) -- lr
-
--- new keymaps
-vim.keymap.set("x", "p", [["_dP]], { desc = "Paste over selection without losing yanked text" })
-
-vim.keymap.set("v", "<a-j>", ":m '>+1<CR>gv=gv", { desc = "moves lines down in visual selection" })
-vim.keymap.set("v", "<a-k>", ":m '<-2<CR>gv=gv", { desc = "moves lines up in visual selection" })
-
-vim.keymap.set("n", "<a-j>", ":m .+1<cr>==", { desc = "move line down" }) -- alt j
-vim.keymap.set("n", "<a-k>", ":m .-2<cr>==", { desc = "move line up" }) -- alt k
-
-vim.keymap.set("v", "<", "<gv", { desc = "Unindent and keep selection" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent and keep selection" })
-
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "move down in buffer with cursor centered" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "move up in buffer with cursor centered" })
-
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result cursor centered" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result cursor centered" })
-
-vim.keymap.set(
-	"n",
-	"<leader>s",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Replace word cursor is on globally" }
-)
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "makes file executable" })
-
-vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart config :restart)" })
-
--- native undotree
-vim.keymap.set("n", "<leader>u", function()
+map("n", "<leader>re", "<Cmd>restart<CR>", { desc = "Restart Neovim" })
+map("n", "<leader>cl", "<Cmd>lsp restart<CR>", { desc = "Restart language servers" })
+map("n", "<leader>u", function()
 	vim.cmd.packadd("nvim.undotree")
 	require("undotree").open()
-end, { desc = "Toggle Builtin Undotree" })
-
-vim.keymap.set("n", "<c-l>", "<c-w>l", { desc = "move to right split" })
-vim.keymap.set("t", "<c-l>", [[<C-\><C-n><C-w>l]], { desc = "move to right split" })
-
-vim.keymap.set("n", "<c-j>", "<c-w>j", { desc = "move to down split" })
-vim.keymap.set("t", "<c-j>", [[<C-\><C-n><C-w>j]], { desc = "move to down split" })
-
-vim.keymap.set("n", "<c-k>", "<c-w>k", { desc = "move to up split" })
-vim.keymap.set("t", "<c-k>", [[<C-\><C-n><C-w>k]], { desc = "move to up split" })
-vim.keymap.set("n", "<a-=>", "5<c-w>>", { desc = "increase width" }) -- alt =
-vim.keymap.set("n", "<a-->", "5<c-w><", { desc = "decrease width" }) -- alt -
-
-vim.keymap.set("n", "<bs>", "<c-w>q", { desc = "close current buffer/window" }) -- backspace
-
--- helpers
-vim.keymap.set("n", "<esc>", vim.cmd.nohlsearch, { desc = "clear highlights" }) -- esc
-vim.keymap.set("n", "<a-f>", "<c-w>|", { desc = "maximize width" }) -- alt f
-vim.keymap.set("n", "<a-n>", "<c-w>=", { desc = "equalize window sizes" }) -- alt n
-vim.keymap.set("n", "<c-a>", "gg<s-v>G", { desc = "select all" }) -- ctrl a
-vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true })
-vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { noremap = true })
-
--- restart lsp servers (its useful when lsp does not recognize file tree updates)
-vim.keymap.set("n", "<leader>lr", function()
-	vim.cmd("lsp restart")
-end, { desc = "[l]sp [r]estart" }) -- lr
-
--- new keymaps
-vim.keymap.set("x", "p", [["_dP]], { desc = "Paste over selection without losing yanked text" })
-
-vim.keymap.set("v", "<a-j>", ":m '>+1<CR>gv=gv", { desc = "moves lines down in visual selection" })
-vim.keymap.set("v", "<a-k>", ":m '<-2<CR>gv=gv", { desc = "moves lines up in visual selection" })
-
-vim.keymap.set("n", "<a-j>", ":m .+1<cr>==", { desc = "move line down" }) -- alt j
-vim.keymap.set("n", "<a-k>", ":m .-2<cr>==", { desc = "move line up" }) -- alt k
-
-vim.keymap.set("v", "<", "<gv", { desc = "Unindent and keep selection" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent and keep selection" })
-
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "move down in buffer with cursor centered" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "move up in buffer with cursor centered" })
-
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result cursor centered" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result cursor centered" })
-
-vim.keymap.set(
-	"n",
-	"<leader>s",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Replace word cursor is on globally" }
-)
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "makes file executable" })
-
-vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart config :restart)" })
-
--- native undotree
-vim.keymap.set("n", "<leader>u", function()
-	vim.cmd.packadd("nvim.undotree")
-	require("undotree").open()
-end, { desc = "Toggle Builtin Undotree" })
+end, { desc = "Open undo history" })

@@ -9,3 +9,12 @@ require("blink.cmp").setup({
 	fuzzy = { implementation = "prefer_rust_with_warning" },
 	sources = { default = { "lsp", "path", "snippets", "buffer" } },
 })
+
+-- Keep AI suggestions out of the way while selecting an LSP completion.
+vim.api.nvim_create_autocmd("User", {
+	group = vim.api.nvim_create_augroup("CompletionSuggestions", { clear = true }),
+	pattern = { "BlinkCmpMenuOpen", "BlinkCmpMenuClose" },
+	callback = function(event)
+		vim.b.copilot_suggestion_hidden = event.match == "BlinkCmpMenuOpen"
+	end,
+})

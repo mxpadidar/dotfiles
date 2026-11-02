@@ -8,8 +8,9 @@ require("toggleterm").setup({
 	insert_mappings = false,
 	start_in_insert = true,
 	auto_scroll = true,
+	shade_terminals = false,
+	highlights = { Normal = { guibg = "NONE" } },
 })
 
 -- Toggle terminal with leader+t
-vim.keymap.set("n", "<leader>t", ":ToggleTerm<CR>", { noremap = true, silent = true })
--- vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+vim.keymap.set("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
