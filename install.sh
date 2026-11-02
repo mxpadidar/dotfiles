@@ -5,7 +5,7 @@ trap 'echo "Failed at line $LINENO." >&2' ERR
 # Keep this as the single package list; pacman installs required dependencies.
 packages=(
     git base-devel curl unzip 7zip zip fd ripgrep fzf tree htop reflector fastfetch
-    zsh alacritty firefox neovim lazygit glab
+    zsh alacritty firefox neovim lazygit glab lsd
     python python-virtualenv uv go nodejs npm tree-sitter-cli postgresql-libs
     hyprland hypridle hyprlock hyprpaper hyprshot hyprpicker uwsm
     qt5-base qt5-svg qt5-x11extras qt5-wayland qt6-wayland

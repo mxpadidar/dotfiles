@@ -23,6 +23,9 @@ zinit light zsh-users/zsh-completions
 autoload -Uz compinit
 compinit
 
+# Match completion names regardless of letter case.
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 # Register Zinit's own completion after compinit creates the completion map.
 autoload -Uz _zinit
 _comps[zinit]=_zinit
@@ -52,6 +55,9 @@ zinit light zsh-users/zsh-autosuggestions
 # Apply completion registrations captured by Zinit while loading plugins.
 zinit cdreplay -q
 
+# git aliases
+alias gdc='git diff --cached | wl-copy'
+
 # OpenVPN: Sanaap client service
 alias ss='sudo systemctl status openvpn-client@sanaap.service'
 alias sr='sudo systemctl restart openvpn-client@sanaap.service'
@@ -69,10 +75,11 @@ proxy() {
 }
 
 alias nvim='proxy nvim'
-alias lg='proxy lazygit'
+alias lg='lazygit'
 alias yazi='proxy yazi'
-alias ll='ls -l --color=auto --group-directories-first'
-alias la='ls -la --color=auto --group-directories-first'
+alias ls='lsd --color=auto --group-directories-first'
+alias ll='lsd -l --color=auto --group-directories-first'
+alias la='lsd -la --color=auto --group-directories-first'
 alias puv='proxy uv'
 alias tree='tree --dirsfirst --gitignore -I .git -L 3'
 
