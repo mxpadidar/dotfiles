@@ -1,4 +1,4 @@
-.PHONY: install collect link install-v2rayn ssh-key
+.PHONY: install collect link install-v2rayn ssh-key install-openvpn
 
 install:
 	bash ./install.sh
@@ -14,3 +14,7 @@ install-v2rayn:
 
 ssh-key:
 	bash ./scripts/ssh-key.sh
+
+install-openvpn:
+	sudo pacman -S --needed openvpn
+	bash ./ovpn/install.sh

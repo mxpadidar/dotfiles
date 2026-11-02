@@ -5,10 +5,10 @@
 The profile and DNS hook live in `~/dotfiles/ovpn`. Credentials are entered during
 setup and stored only in `/etc/openvpn/client/creds.txt`, readable by root.
 
-After reinstalling Arch and installing OpenVPN, restore with:
+Install OpenVPN and restore the company profile from the repository root:
 
 ```bash
-bash ~/dotfiles/ovpn/install.sh
+make install-openvpn
 sudo systemctl start openvpn-client@sanaap.service
 ```
 
