@@ -84,11 +84,13 @@ proxy() {
 }
 
 alias nvim='proxy nvim'
-alias lg='lazygit'
-alias yazi='proxy yazi'
+alias gg='lazygit'
+alias zz='proxy yazi'
+
 alias ls='lsd --color=auto --group-directories-first'
 alias ll='lsd -l --color=auto --group-directories-first'
 alias la='lsd -la --color=auto --group-directories-first'
+
 alias puv='proxy uv'
 alias tree='tree --dirsfirst --gitignore -I .git -L 3'
 
