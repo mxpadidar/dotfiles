@@ -55,14 +55,14 @@ hl.env("HYPRSHOT_DIR", os.getenv("HOME") .. "/pix/screenshots")
 ---- LOOK AND FEEL ----
 hl.config({
 	general = {
-		gaps_in = 4,
-		gaps_out = 8,
+		gaps_in = 2,
+		gaps_out = 4,
 
-		border_size = 2,
+		border_size = 1,
 
 		col = {
-			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-			inactive_border = "rgba(595959aa)",
+			active_border = "rgba(bb9af7ff)",
+			inactive_border = "rgba(363b54aa)",
 		},
 
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -86,7 +86,7 @@ hl.config({
 			enabled = true,
 			range = 4,
 			render_power = 3,
-			color = 0xee1a1a1a,
+			color = 0xee16161e,
 		},
 
 		blur = {
@@ -244,7 +244,10 @@ hl.bind(mainMod .. " + minus", hl.dsp.exec_cmd(terminal .. " -e " .. fileManager
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" })) -- toggle floating
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(menu)) -- open app launcher
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo()) -- toggle pseudotiling
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(terminal .. " -e impala")) -- Wi-Fi
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(terminal .. " -e pulsemixer")) -- audio mixer
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("bash ~/.config/quickshell/power-menu.sh")) -- power options
+hl.bind(superShift .. " + P", hl.dsp.window.pseudo()) -- toggle pseudotiling
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.config/hypr/reload.sh")) -- reload config
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" })) -- toggle fullscreen
 
