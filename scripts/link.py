@@ -12,6 +12,7 @@ HOME = Path.home()
 DOTFILES_DIR = Path(__file__).resolve().parent.parent
 
 DOTFILES = {
+    "wallpapers": "pix/wallpapers",
     "fastfetch": ".config/fastfetch",
     "fuzzel": ".config/fuzzel",
     "swaync": ".config/swaync",
