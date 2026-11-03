@@ -6,7 +6,8 @@ BarButton {
     id: wifi
     property var status: ({state: "unavailable", ssid: ""})
     glyph: status.state === "offline" ? "\udb81\uddaa" : "\uf1eb"
-    text: status.state === "connected" ? (status.ssid.length > 16 ? status.ssid.slice(0, 15) + "…" : status.ssid) : status.state === "connecting" ? "Connecting" : status.state === "offline" ? "Offline" : "Wi-Fi ?"
+    text: ""
+    tooltip: status.state === "connected" ? status.ssid : status.state
     foreground: status.state === "connected" ? "#7dcfff" : status.state === "offline" ? "#f7768e" : "#565f89"
     onClicked: Quickshell.execDetached(["ghostty", "-e", "impala"])
 

@@ -2,6 +2,16 @@ import QtQuick
 
 Rectangle {
     id: root
+    property string tooltip: ""
+    BarTooltip {
+        target: root
+        hovered: mouse.containsMouse
+        text: root.tooltip
+    }
+    Behavior on color { ColorAnimation { duration: 120 } }
+    scale: mouse.pressed ? 0.96 : 1
+    Behavior on scale { NumberAnimation { duration: 120 } }
+    radius: 5
     property alias text: label.text
     property bool active: false
     property bool interactive: true
@@ -15,7 +25,7 @@ Rectangle {
     color: mouse.containsMouse && interactive ? "#24283b" : "transparent"
     activeFocusOnTab: interactive
     border.width: activeFocus ? 1 : 0
-    border.color: "#7aa2f7"
+    border.color: "#bb9af7"
     Keys.onReturnPressed: clicked(Qt.LeftButton)
     Keys.onSpacePressed: clicked(Qt.LeftButton)
     Row {
@@ -53,11 +63,13 @@ Rectangle {
     MouseArea {
         id: mouse
         anchors.fill: parent
-        enabled: root.interactive
         hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        cursorShape: root.interactive ? Qt.PointingHandCursor : Qt.ArrowCursor
+        acceptedButtons: root.interactive ? Qt.LeftButton | Qt.RightButton : Qt.NoButton
         onClicked: event => root.clicked(event.button)
-        onWheel: event => root.scrolled(event.angleDelta.y)
+        onWheel: event => {
+            if (root.interactive) root.scrolled(event.angleDelta.y);
+            else event.accepted = false;
+        }
     }
 }
