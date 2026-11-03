@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
-choice=$(printf 'Lock\nSuspend\nLogout\nReboot\nShutdown\n' | fuzzel --dmenu --hide-prompt --lines 5) || exit 0
-case "$choice" in
+
+if (( $# == 0 )); then
+    exec quickshell --no-duplicate --path "$(dirname -- "${BASH_SOURCE[0]}")/power-menu.qml"
+fi
+
+[[ $# == 2 && $1 == --action ]] || exit 1
+case "$2" in
     Lock) exec loginctl lock-session ;;
-    Suspend|Logout|Reboot|Shutdown) ;;
-    *) exit 0 ;;
-esac
-confirm=$(printf 'Cancel\nConfirm\n' | fuzzel --dmenu --hide-prompt --lines 2 --mesg "$choice?") || exit 0
-[[ "$confirm" == Confirm ]] || exit 0
-case "$choice" in
     Suspend) loginctl lock-session && systemctl suspend ;;
-    Logout) uwsm stop ;;
-    Reboot) systemctl reboot ;;
-    Shutdown) systemctl poweroff ;;
+    Logout) exec uwsm stop ;;
+    Reboot) exec systemctl reboot ;;
+    Shutdown) exec systemctl poweroff ;;
+    *) exit 1 ;;
 esac

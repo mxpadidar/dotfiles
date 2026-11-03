@@ -9,7 +9,7 @@ A 30px Tokyo Night bar using Hasklug Nerd Font.
 - Volume: click for Pulsemixer, right-click to mute, scroll to adjust.
 - Notifications: click for SwayNC, right-click for do-not-disturb. A crossed bell indicates DND.
 - Monitor: toggle automatic idle inhibition. Purple means paused; hover for status. Shared across monitors, reset off when the bar restarts. Manual locking and suspend still work.
-- Power: opens the existing Fuzzel menu with confirmations.
+- Power / Super+P: opens a centered selection-only menu. Use j/k or arrows, Enter to select, and Esc or click outside to dismiss. Other typing is ignored. Selecting an option runs it immediately without confirmation.
 
 Hover and press animations are short; nothing animates continuously.
 Battery warnings appear at 20% (amber) and 10% (red) while discharging.
