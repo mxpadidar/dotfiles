@@ -8,7 +8,7 @@ BarButton {
     glyph: status.state === "offline" ? "\udb81\uddaa" : "\uf1eb"
     text: status.state === "connected" ? (status.ssid.length > 16 ? status.ssid.slice(0, 15) + "…" : status.ssid) : status.state === "connecting" ? "Connecting" : status.state === "offline" ? "Offline" : "Wi-Fi ?"
     foreground: status.state === "connected" ? "#7dcfff" : status.state === "offline" ? "#f7768e" : "#565f89"
-    onClicked: Quickshell.execDetached(["alacritty", "-e", "impala"])
+    onClicked: Quickshell.execDetached(["ghostty", "-e", "impala"])
 
     Process {
         id: poll

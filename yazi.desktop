@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
 Name=Yazi
-Comment=Browse files in Alacritty
-Exec=alacritty -e yazi %f
-TryExec=alacritty
+Comment=Browse files in Ghostty
+Exec=ghostty -e yazi %f
+TryExec=ghostty
 Icon=system-file-manager
 Terminal=false
 Categories=System;FileTools;FileManager;

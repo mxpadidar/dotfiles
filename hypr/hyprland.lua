@@ -17,7 +17,7 @@ hl.monitor({
 })
 
 ---- MY PROGRAMS ----
-local terminal = "alacritty"
+local terminal = "ghostty"
 local fileManager = "yazi"
 local menu = "fuzzel"
 
@@ -92,7 +92,8 @@ hl.config({
 		blur = {
 			enabled = true,
 			size = 3,
-			passes = 1,
+			passes = 3,
+			new_optimizations = true,
 			vibrancy = 0.1696,
 		},
 	},
@@ -223,6 +224,8 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 local superShift = "SUPER + SHIFT"
+
+hl.bind(superShift .. " + L", hl.dsp.exec_cmd("loginctl lock-session")) -- lock screen
 
 -- hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("uwsm stop")) -- exit Hyprland
 hl.bind(

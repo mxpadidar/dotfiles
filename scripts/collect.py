@@ -16,7 +16,7 @@ DOTFILES = {
     "yazi.desktop": ".local/share/applications/yazi.desktop",
     "nvim": ".config/nvim",
     "quickshell": ".config/quickshell",
-    "alacritty": ".config/alacritty",
+    "ghostty": ".config/ghostty",
     ".zshrc": ".zshrc",
     ".zprofile": ".zprofile",
     ".gitconfig": ".gitconfig",

@@ -124,7 +124,7 @@ ShellRoot {
                             if (button === Qt.RightButton && root.sink && root.sink.audio)
                                 root.sink.audio.muted = !root.sink.audio.muted;
                             else if (button === Qt.LeftButton)
-                                Quickshell.execDetached(["alacritty", "-e", "pulsemixer"]);
+                                Quickshell.execDetached(["ghostty", "-e", "pulsemixer"]);
                         }
                         onScrolled: delta => {
                             if (root.sink && root.sink.audio && delta !== 0)
