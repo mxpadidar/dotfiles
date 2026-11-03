@@ -29,6 +29,10 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 	hl.exec_cmd("udiskie")
+
+	hl.exec_cmd("firefox", { workspace = "1 silent" })
+	hl.exec_cmd(terminal, { workspace = "2 silent" })
+	hl.exec_cmd('cd "$HOME/.local/opt/v2rayN-linux-64" && exec ./v2rayN', { workspace = "10 silent" })
 end)
 
 ---- ENVIRONMENT VARIABLES ----
