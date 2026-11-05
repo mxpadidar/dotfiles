@@ -9,7 +9,7 @@ packages=(
   python python-virtualenv uv go nodejs npm tree-sitter-cli postgresql-libs
   hyprland hypridle hyprlock hyprpaper hyprshot hyprpicker uwsm
   qt5-base qt5-svg qt5-x11extras qt5-wayland qt6-wayland
-  quickshell fuzzel swaync upower libnotify wl-clipboard brightnessctl
+  quickshell fuzzel swaync upower libnotify sound-theme-freedesktop wl-clipboard brightnessctl
   xdg-utils xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xorg-xwayland mesa
   adw-gtk-theme nwg-look otf-hasklig-nerd ttf-dejavu polkit-gnome gnome-keyring
   pipewire pipewire-alsa pipewire-pulse wireplumber alsa-utils playerctl pulsemixer

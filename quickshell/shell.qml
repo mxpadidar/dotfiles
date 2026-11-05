@@ -8,6 +8,7 @@ import Quickshell.Services.UPower
 
 ShellRoot {
     id: root
+    BatteryAlerts {}
     readonly property int barHeight: 30
     property bool idlePaused: false
     property int notificationCount: 0
@@ -123,15 +124,7 @@ ShellRoot {
                 Row {
                     anchors.right: parent.right
                     spacing: 8
-                    BarButton {
-                        visible: UPower.displayDevice.ready && UPower.displayDevice.isLaptopBattery
-                        interactive: false
-                        width: 76
-                        tooltip: UPower.onBattery ? "Running on battery" : "Connected to power"
-                        glyph: UPower.onBattery ? "\uf240" : "\uf0e7"
-                        text: Math.round(UPower.displayDevice.percentage * 100) + "%"
-                        foreground: UPower.onBattery && UPower.displayDevice.percentage <= 10 ? "#f7768e" : UPower.onBattery && UPower.displayDevice.percentage <= 20 ? "#e0af68" : "#a9b1d6"
-                    }
+                    BatteryButton {}
                     WifiButton {}
                     BarButton {
                         width: 76

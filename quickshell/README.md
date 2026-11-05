@@ -12,8 +12,10 @@ A 30px Tokyo Night bar using Hasklug Nerd Font.
 - Power / Super+P: opens a centered selection-only menu. Use j/k or arrows, Enter to select, and Esc or click outside to dismiss. Other typing is ignored. Selecting an option runs it immediately without confirmation.
 
 Hover and press animations are short; nothing animates continuously.
-Battery warnings appear at 20% (amber) and 10% (red) while discharging.
+Battery icons track charge level. Charging is cyan, full is teal, and plugged-in idle is purple. On battery, normal levels are muted, ≤20% is amber, and ≤10% is red.
 Quickshell uses PipeWire and UPower directly, reads iwd every five seconds, and subscribes to SwayNC events.
 
 Super+R restarts Quickshell and Hyprpaper and reloads SwayNC.
 Run Wi-Fi regression checks with `python3 -m unittest discover -s quickshell/tests`.
+
+Battery alerts are shared across monitors: a notification at 20%, then a critical notification and short sound at 10%, only while unplugged. Each threshold warns once; charging back to 25% re-arms them. Starting the bar or unplugging below a threshold sends only the appropriate warning. Restarting the bar resets the warning state. Sound follows system volume and mute.
