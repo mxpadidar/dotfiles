@@ -7,6 +7,12 @@ vim.pack.add({
 require("mason").setup()
 vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
 
+vim.lsp.config("typos_lsp", {
+	init_options = {
+		config = vim.fn.stdpath("config") .. "/.typos.toml",
+	},
+})
+
 vim.lsp.config("ty", {
 	settings = { ty = { diagnosticMode = "openFilesOnly", showSyntaxErrors = false } },
 })
