@@ -27,6 +27,7 @@ DOTFILES = {
     ".gitconfig": ".gitconfig",
     "user-dirs.conf": ".config/user-dirs.conf",
     "user-dirs.dirs": ".config/user-dirs.dirs",
+    "mimeapps.list": ".config/mimeapps.list",
 }
 
 

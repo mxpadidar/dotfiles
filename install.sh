@@ -49,10 +49,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 mkdir -p "$HOME/dl" "$HOME/pix/screenshots"
 
-xdg-mime default yazi.desktop inode/directory
-xdg-mime default nvim.desktop text/plain
-xdg-mime default firefox.desktop text/html x-scheme-handler/http x-scheme-handler/https
-
 # preserve the existing networking and resolver. archinstall already configured
 # connectivity; starting a second network manager can disconnect the machine.
 sudo systemctl enable --now bluetooth.service docker.service
