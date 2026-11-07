@@ -9,12 +9,14 @@ vim.pack.add({
 local palette = {
 	bg = "#08080b",
 	popup = "#16161e",
-	fg = "#787c99",
+	fg = "#c0caf5",
+	muted = "#787c99",
 	selection = "#515c7e",
 	black = "#363b54",
 	red = "#f7768e",
 	green = "#41a6b5",
 	yellow = "#e0af68",
+	string = "#9ece6a",
 	blue = "#7aa2f7",
 	magenta = "#bb9af7",
 	cyan = "#7dcfff",
@@ -33,9 +35,9 @@ require("tokyonight").setup({
 		colors.bg_statusline = palette.popup
 		colors.bg_visual = palette.selection
 		colors.fg = palette.fg
-		colors.fg_dark = palette.fg
+		colors.fg_dark = palette.muted
 		colors.fg_float = palette.fg
-		colors.fg_sidebar = palette.fg
+		colors.fg_sidebar = palette.muted
 		colors.terminal_black = palette.black
 		colors.red = palette.red
 		colors.green = palette.green
@@ -59,13 +61,15 @@ require("tokyonight").setup({
 			blue = palette.blue,
 			magenta = palette.magenta,
 			cyan = palette.cyan,
-			white = palette.fg,
+			white = palette.muted,
 		}) do
 			colors.terminal[name] = color
 			colors.terminal[name .. "_bright"] = color
 		end
 	end,
 	on_highlights = function(hl)
+		hl.String = { fg = palette.string }
+		hl["@lsp.typemod.string.documentation"] = { link = "@string.documentation" }
 		-- Let Ghostty's translucent background show through editor panes.
 		hl.Normal = { fg = palette.fg, bg = "NONE" }
 		hl.NormalNC = { fg = palette.fg, bg = "NONE" }
